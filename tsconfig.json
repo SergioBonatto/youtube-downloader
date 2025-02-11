@@ -6,7 +6,14 @@
     "esModuleInterop": true,
     "jsx": "react",
     "outDir": "build",
-    "rootDir": "src"
+    "rootDir": "src",
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

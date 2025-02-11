@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "ts-node-dev --respawn src/server.ts",
-    "build": "webpack --mode production",
-    "start": "node dist/server.js",
+    "build": "webpack --mode production && tsc --skipLibCheck",
+    "start": "node build/server.js",
     "client": "webpack serve --mode development"
   },
   "dependencies": {
