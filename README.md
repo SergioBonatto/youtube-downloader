@@ -269,6 +269,7 @@ MIT
 
 Note: Frontend React demo included for testing purposes only.
 # Run e2e tests
+```
 npm run test:e2e
 ```
 
