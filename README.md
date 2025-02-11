@@ -130,7 +130,144 @@ npm run test
 
 # Run integration tests
 npm run test:integration
+Coletando informações do workspace# YouTube Downloader Core
 
+A TypeScript backend service for downloading and processing YouTube videos with queue management and progress tracking.
+
+## Core Features
+
+- Multi-format video/audio downloads (MP4, MP3, WebM)
+- Queue system with Redis/Bull
+- Progress tracking and status management
+- Error handling with Winston logger
+- Rate limiting and request validation
+- Clean Architecture principles
+
+## Tech Stack
+
+- Node.js + TypeScript
+- Express.js for API
+- Bull for queue management
+- Redis for queue storage
+- Winston for logging
+- Jest for testing
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 16+
+- Redis server running
+- TypeScript knowledge
+- Basic understanding of queues
+
+### Installation
+
+```bash
+npm install
+```
+
+### Configuration
+
+Create .env file:
+```env
+NODE_ENV=development
+PORT=3000
+REDIS_URL=redis://localhost:6379
+MAX_CONCURRENT_DOWNLOADS=3
+DOWNLOAD_PATH=./downloads
+```
+
+### Running
+
+Development:
+```bash
+npm run dev
+```
+
+Build and run production:
+```bash
+npm run build
+npm start
+```
+
+Frontend demo:
+```bash
+npm run client
+```
+
+## Core Components
+
+### `DownloadQueue`
+Handles download queue management using Bull:
+- Concurrent download limiting
+- Progress tracking
+- Auto-retry on failures
+- Status management
+
+### `VideoService`
+Main business logic:
+- URL validation
+- Format processing
+- Queue job creation
+- Status tracking
+
+## API Endpoints
+
+### Download Management
+```typescript
+POST /api/videos/download
+{
+  url: string,
+  format: "mp4" | "mp3" | "webm",
+  quality?: "1080p" | "720p" | "480p" | "360p"
+}
+
+GET /api/videos/status/:id
+GET /api/queue/status
+POST /api/queue/clear
+```
+
+## Development
+
+### Project Structure
+```
+src/
+├── server/
+│   ├── application/    # Use cases & business logic
+│   ├── domain/        # Entities & interfaces
+│   ├── infrastructure/# External services implementation
+│   └── presentation/  # API controllers & routes
+├── services/          # Core services
+└── utils/            # Shared utilities
+```
+
+### Testing
+
+```bash
+npm run test          # Unit tests
+npm run test:int     # Integration tests
+```
+
+### Error Handling
+Errors are logged using `logger` and include:
+- Queue processing errors
+- Download failures
+- Invalid URL/format errors
+
+## Contributing
+
+1. Fork repository
+2. Create feature branch
+3. Follow TypeScript best practices
+4. Add tests
+5. Submit PR
+
+## License
+
+MIT
+
+Note: Frontend React demo included for testing purposes only.
 # Run e2e tests
 npm run test:e2e
 ```
