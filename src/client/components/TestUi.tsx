@@ -1,3 +1,4 @@
+import React from 'react';
 import { VideoForm } from '../components/VideoForm';
 
 export const DownloadPage = () => {

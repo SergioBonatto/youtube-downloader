@@ -1,3 +1,5 @@
+import { Video } from '../entities/Video';
+
 export interface IVideoRepository {
     save(video: Video): Promise<void>;
     findById(id: string): Promise<Video | null>;

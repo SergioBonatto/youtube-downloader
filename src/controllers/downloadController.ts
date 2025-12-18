@@ -18,11 +18,16 @@ export class DownloadController {
         return;
       }
 
+      logger.info(`Processing download request for URL: ${url}, Format: ${format}`);
       const result = await this.downloadService.downloadVideo(url, format);
       res.status(200).json({ message: 'Download completed', data: result });
     } catch (error) {
-      logger.error(`Controller error: ${error}`);
-      res.status(500).json({ error: 'Internal server error' });
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      logger.error(`Controller error: ${errorMessage}`);
+      if (error instanceof Error) {
+        logger.error(`Stack trace: ${error.stack}`);
+      }
+      res.status(500).json({ error: errorMessage });
     }
   }
 }
